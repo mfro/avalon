@@ -1,0 +1,8 @@
+<style src="style.less"/>
+
+<div class="login-page">
+    Enter your name:
+    <input class="input" type="text" v-model="name" @input="error = null"/>
+    <button class="submit" @click="submit()" :disabled="loading">Submit</button>
+    <span class="error" v-if="error" v-text="error"/>
+</div>

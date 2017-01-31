@@ -1,0 +1,31 @@
+<style src="style.less" />
+
+
+<div class="seance-results" :style="{ backgroundImage: `url(${image})` }">
+    <span v-if="['assassin', 'mordred', 'morgana', 'minion'].indexOf(info.card.key) != -1">
+        Your fellow minions of mordred are:
+        <br/>
+        {{ makeList(info.known) }}
+    </span>
+
+    <span v-else-if="info.card.key == 'merlin'">
+        The minions of Mordred except Mordred are:
+        <br/>
+        {{ makeList(info.known) }}
+    </span>
+
+    <span v-else-if="info.card.key == 'percival'">
+        <template v-if="info.known.length == 1">
+            Merlin is {{ makeList(info.known) }}
+        </template>
+        <template v-else>
+            Merlin and Morgana are, in no particular order:
+            <br/>
+            {{ makeList(info.known) }}
+        </template>
+    </span>
+
+    <span v-else-if="info.known.length != 0">
+        UH OH SOMETHING WENT WRONG
+    </span>
+</div>

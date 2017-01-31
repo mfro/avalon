@@ -1,0 +1,19 @@
+<style src="style.less" />
+
+<div class="avalon-app" @touchmove.prevent>
+    <login-page v-if="!self" />
+
+    <role-results v-if="info" :info="info"/>
+
+    <template v-else-if=" members">
+        <card-selector/>
+
+        <div class="member-list">
+            <div class="member" :class="{ ready: member.ready }" v-for="member in members">
+                <span class="member-name">{{ member.name }}</span>
+            </div>
+        </div>
+
+        <button class="ready-button" @click="ready()">{{ self.ready ? 'Not ready' : 'Ready' }}</button>
+    </template>
+</div>

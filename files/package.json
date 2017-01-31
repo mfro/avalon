@@ -1,0 +1,32 @@
+{
+    "name": "avalon",
+    "private": true,
+    "authors": "mfro",
+    "version": "1.0.0",
+    "description": "Avalon role provider",
+
+    "devDependencies": {
+        "webpack": "^2.2.0",
+        "webpack-dev-server": "^2.2.1",
+        
+        "file-loader": "^0.9.0",
+
+        "less": "^2.7.2",
+        "less-loader": "^2.2.3",
+        "css-loader": "^0.26.1",
+        "style-loader": "^0.13.1",
+
+        "vue": "^2.1.10",
+        "my-vue-loader": "file:../../../../node/my-vue-loader",
+
+        "babel-core": "^6.22.1",
+        "babel-loader": "^6.2.10",
+        "babel-preset-es2015": "^6.22.0"
+    },
+
+    "scripts": {
+        "build": "webpack -p",
+        "watch": "webpack --watch",
+        "serve": "webpack-dev-server --inline --hot"
+    }
+}

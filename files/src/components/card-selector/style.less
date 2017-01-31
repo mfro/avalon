@@ -1,0 +1,30 @@
+.card-selector {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    height: 13%;
+    flex: 0 0 25%;
+
+    border-bottom: 5px solid gray;
+
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+
+//    transition-duration: 200ms;
+//    transition-property: border-color, filter, -webkit-filter;
+
+    .background {
+        width: 100%;
+        height: 100%;
+        background-size: 100% auto;
+        background-position: center 40%;
+    }
+
+    &.enabled {
+        filter: grayscale(0);
+        -webkit-filter: grayscale(0);
+        border-color: green;
+    }
+}

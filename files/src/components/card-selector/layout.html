@@ -1,0 +1,7 @@
+<style src="style.less" />
+
+<div class="card-selector" v-if="cards">
+    <div class="card" :class="{ enabled: card.enabled }" @click="toggle(card.card)" v-for="card in cards">
+        <div class="background" :style="{ backgroundImage: `url(${getImage(card.card)})` }"/>
+    </div>
+</div>
