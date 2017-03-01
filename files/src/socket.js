@@ -22,7 +22,7 @@ export function create(name, onError) {
     let url;
 
     if (window.location.protocol == 'https:') {
-        url = `wss://${window.location.hostname}:25570`;
+        url = `wss://${window.location.host}/api/avalon`;
     } else {
         url = `ws://${window.location.hostname}:8082`;
     }
