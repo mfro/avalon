@@ -1,6 +1,6 @@
 {
   "projects": [
     "src",
-    "../Common.HttpOptions/src"
+    "../Common/src"
   ]
 }
