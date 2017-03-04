@@ -22,13 +22,19 @@ namespace Mfroehlich.Avalon.Game
             new OptionalCard(new Morgana())
         };
 
+        public bool ValidateName(string name)
+        {
+            return !Members.Any(m => string.Equals(m.Name, name, StringComparison.OrdinalIgnoreCase));
+        }
+
         public async Task AddSocket(Socket socket, string name)
         {
             var id = (Members.LastOrDefault()?.Id ?? 0) + 1;
             var member = new Member(id, name, socket);
             Members.Add(member);
 
-            socket.Closed += async (s, e) => {
+            socket.Closed += async (s, e) =>
+            {
                 Members.Remove(member);
                 await SendMembers();
             };
@@ -45,7 +51,8 @@ namespace Mfroehlich.Avalon.Game
             var member = Members.Single(m => m.Socket == sender);
 
             var type = (string)e["type"];
-            switch (type) {
+            switch (type)
+            {
                 case "ready":
                     member.Ready = !member.Ready;
                     await SendMembers();
@@ -54,7 +61,8 @@ namespace Mfroehlich.Avalon.Game
                 case "toggle-card":
                     var key = (string)e["body"];
                     var card = Optionals.SingleOrDefault(s => s.Card.Key == key);
-                    if (card != null) {
+                    if (card != null)
+                    {
                         card.Enabled = !card.Enabled;
                     }
                     await SendCards();
@@ -72,28 +80,33 @@ namespace Mfroehlich.Avalon.Game
             evil -= cards.Count(c => c.Team == Team.Evil);
             good -= cards.Count(c => c.Team == Team.Good);
 
-            if (evil < 0 || good < 0) {
+            if (evil < 0 || good < 0)
+            {
                 return false;
             }
 
-            for (var i = 0; i < evil; i++) {
+            for (var i = 0; i < evil; i++)
+            {
                 cards.Add(new MinionOfMordred());
             }
 
-            for (var i = 0; i < good; i++) {
+            for (var i = 0; i < good; i++)
+            {
                 cards.Add(new LoyalServant());
             }
 
             var outcome = new Dictionary<Member, Card>();
             var random = new Random();
 
-            foreach (var member in Members) {
+            foreach (var member in Members)
+            {
                 var card = cards[random.Next(cards.Count)];
                 cards.Remove(card);
                 outcome.Add(member, card);
             }
 
-            foreach (var pair in outcome) {
+            foreach (var pair in outcome)
+            {
                 var known = outcome.Where(other => other.Key != pair.Key && pair.Value.CanSee(other.Value));
                 await pair.Key.Socket.SendAsync("info", new
                 {
@@ -109,19 +122,22 @@ namespace Mfroehlich.Avalon.Game
 
         private async Task SendMembers()
         {
-            if (Members.Count >= 5 && Members.All(m => m.Ready)) {
+            if (Members.Count >= 5 && Members.All(m => m.Ready))
+            {
                 if (await Seance())
                     return;
             }
 
-            foreach (var member in Members) {
+            foreach (var member in Members)
+            {
                 await member.Socket.SendAsync("members", Members);
             }
         }
 
         private async Task SendCards()
         {
-            foreach (var member in Members) {
+            foreach (var member in Members)
+            {
                 await member.Socket.SendAsync("cards", Optionals);
             }
         }

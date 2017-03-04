@@ -30,7 +30,7 @@ namespace Mfroehlich.Avalon
                 return;
             }
 
-            if (game.Members.Any(m => string.Equals(m.Name, name, StringComparison.OrdinalIgnoreCase))) {
+            if (!game.ValidateName(name)) {
                 context.Response.StatusCode = 400;
                 return;
             }
