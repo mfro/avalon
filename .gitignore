@@ -4,4 +4,4 @@ project.lock.json
 /test
 /src/*/bin
 /src/*/obj
-/files/wwwroot
+/files/build
