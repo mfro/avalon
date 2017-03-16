@@ -22,9 +22,9 @@ export function create(name, onError) {
     let url;
 
     if (window.location.protocol == 'https:') {
-        url = `wss://${window.location.host}/api/avalon`;
+        url = `wss://${window.location.host}/api/avalon/socket`;
     } else {
-        url = `ws://${window.location.hostname}:8082`;
+        url = `ws://${window.location.hostname}:8082/socket`;
     }
 
     ws = new WebSocket(url + '?name=' + name, 'protocolTwo');
