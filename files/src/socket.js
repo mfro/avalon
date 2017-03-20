@@ -19,15 +19,10 @@ export function close() {
 }
 
 export function create(name, onError) {
-    let url;
+    let base = SERVICE_URL;
+    let url = SERVICE_URL.replace('http', 'ws');
 
-    if (window.location.protocol == 'https:') {
-        url = `wss://${window.location.host}/api/avalon/socket`;
-    } else {
-        url = `ws://${window.location.hostname}:8082/socket`;
-    }
-
-    ws = new WebSocket(url + '?name=' + name, 'protocolTwo');
+    ws = new WebSocket(url + '/socket?name=' + name, 'protocolTwo');
     window.ws = ws;
     for (let key in events) {
         for (let callback of events[key]) {
