@@ -1,4 +1,4 @@
-import Template from './index.html';
+import Template from './layout.html';
 
 import * as images from '../images';
 

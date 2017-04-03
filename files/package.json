@@ -17,7 +17,7 @@
         "style-loader": "^0.13.1",
 
         "vue": "^2.1.10",
-        "my-vue-loader": "file:../../../../node/my-vue-loader",
+        "my-vue-loader": "git+https://git.mfro.me/random/my-vue-loader.git",
 
         "babel-core": "^6.22.1",
         "babel-loader": "^6.2.10",

@@ -1,4 +1,4 @@
-<style src="style.less" />
+<style src="./style.less" />
 
 <div class="card-selector" v-if="cards">
     <div class="card" :class="{ enabled: card.enabled }" @click="toggle(card.card)" v-for="card in cards">
