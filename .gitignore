@@ -1,7 +1,7 @@
 node_modules
 project.lock.json
 
-/test
 /src/*/bin
 /src/*/obj
-/files/build
+/src/*/deploy
+/files/dist

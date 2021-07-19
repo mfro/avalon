@@ -4,7 +4,7 @@ const { DefinePlugin } = require('webpack');
 const config = {
     entry: './src/index.js',
     output: {
-        path: path.join(__dirname, "build"),
+        path: path.join(__dirname, "dist"),
         filename: "bundle.js"
     },
     resolve: {
@@ -40,8 +40,8 @@ const config = {
 
 module.exports = function (env) {
     let args = JSON.parse(process.env.DEPLOY_ARGS || '{}');
-    
-    let service = args.api_host || 'localhost:8081';
+
+    let service = args.api_host || 'https://api.mfro.me/avalon';
 
     console.log('weback build args:');
     console.log('  SERVICE_URL:', service);
